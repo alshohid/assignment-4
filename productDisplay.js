@@ -5,6 +5,7 @@ const body = document.querySelector('body')
 const total = document.querySelector('.total');
 const list = document.querySelector('.list');
 const listCard = document.querySelector('.listCard');
+let scrollDiv = document.querySelector('.scrollDiv')
 
 openShopping.addEventListener('click',()=>{
     body.classList.add('active');
@@ -12,6 +13,7 @@ openShopping.addEventListener('click',()=>{
 closeShopping.addEventListener('click',()=>{
     body.classList.remove('active');
 })
+scrollDiv.scrollTop=500;
 let products =[
     {
         id:1,
@@ -88,18 +90,20 @@ let cardList=[];
     if(cardList[key] == null){
         cardList[key]=products[key]
         cardList[key].quantity=1;
+        console.log(cardList[key].quantity);
     }
     reloadCard()
  }
  function reloadCard(){
     listCard.innerHTML= ''
+    total.innerHTML=0;
     let count =0
     let totalPrice=0;
            
     cardList.forEach((product,key)=>{
         totalPrice += product.price;
         count += product.quantity
-   
+             
     total.innerText= ` Total Price = ${totalPrice.toLocaleString()}`;
         document.querySelector('.quantity').innerText=count;
 
@@ -112,7 +116,7 @@ let cardList=[];
              <div >
               
               <h6> ${product.name} </h6>
-              <h6> ${product.quantity} </h6>
+              <h6> Quantity ${product.quantity} </h6>
               <h4 class='bdt'> ${product.price.toLocaleString()} BDT </h4>
 
              </div>
@@ -121,7 +125,7 @@ let cardList=[];
              <div > 
                 
                 
-              <button class='updateProductBtn' onclick='updateHandler(${key},${product.quantity -1})'>Remove</button>
+              <button class='updateProductBtn' onclick='updateHandler(${key},${product.quantity -1} )'>Remove</button>
               
              </div>
               
@@ -146,14 +150,16 @@ let cardList=[];
  }
  
  function buyProduct(){
-
+    alert('Developer is Sleeping 😊')
  }
  function updateHandler(key,quantity){
+    
   if(quantity == 0){
     delete cardList[key];
   }
   else{
     cardList[key].quantity = quantity;
+    console.log(cardList[key].quantity);
     cardList[key].price = quantity* products[key].price;
   }
      reloadCard()

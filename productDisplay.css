@@ -178,3 +178,7 @@ header{
     background-color: rgb(58, 6, 6);
     color: #a8adad;
 }
+.scrollDiv{
+    height: auto;
+    overflow-y: scroll;
+}
