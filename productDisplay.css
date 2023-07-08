@@ -98,7 +98,7 @@ header{
 }
  
 .active .card {
-    left: 60%;
+    left:calc(100% - 500px);
 }
 .active .container {
     transform: translateX(-200px);
